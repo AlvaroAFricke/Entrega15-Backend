@@ -5,7 +5,7 @@ class ContenedorUsuarios {
 
     constructor() {
         set({ strictQuery: true })
-        this.connect = connect('mongodb://localhost/usuarios', { useNewUrlParser: true, useUnifiedTopology: true })
+        this.connect = connect('mongodb+srv://alviafricke:pruebamongo@baseprueba.uuv5218.mongodb.net/Usuarios', { useNewUrlParser: true, useUnifiedTopology: true })
     }
 
     async getAll() {
