@@ -296,7 +296,10 @@ const config = {
     }
 }
 
+import mongoose from 'mongoose'
+
 const { PORT } = parseArgs(process.argv.slice(2), config)
+const connection = mongoose.connect(process.env.MONGO_URL)
 
 //-----------//
 // Clusters //
