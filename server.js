@@ -304,4 +304,7 @@ app.listen(PORT, (err) => {
         logger.error('Error al iniciar el servidor')
     }
     logger.info('Servidor corriendo ...')
+    app.get('/*', (req, res) =>{
+        res.redirect('/login')
+    })
 })
