@@ -297,33 +297,11 @@ const config = {
 }
 
 const { PORT } = parseArgs(process.argv.slice(2), config)
-//const connection = mongoose.connect('mongodb+srv://alviafricke:pruebamongo@baseprueba.uuv5218.mongodb.net/?retryWrites=true&w=majority')
 
-//-----------//
-// Clusters //
-//---------//
+app.listen(PORT, (err) => {
 
-import cluster from 'cluster'
-
-if (cluster.isPrimary) {
-
-    logger.info(`PID number: ${process.pid}`)
-
-    for (let i = 0; i < numCPUs; i++) {
-        cluster.fork()
+    if (err) {
+        logger.error('Error al iniciar el servidor')
     }
-
-    cluster.on('exit', worker => {
-        logger.info(`Worker ${worker.process.pid} died: ${new Date().toString()}`)
-        cluster.fork()
-    })
-} else {
-
-    app.listen(PORT, (err) => {
-
-        if (err) {
-            logger.error('Error al iniciar el servidor')
-        }
-        logger.info('Servidor corriendo ...')
-    })
-}
+    logger.info('Servidor corriendo ...')
+})
